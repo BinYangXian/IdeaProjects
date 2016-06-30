@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <context:component-scan base-package="com.jikexueyuan.javaweb.controllers"/><!--配置组件扫描目录-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"><!--spring mvc提供-->
+        <property name="prefix" value="pages/"/>  <!---->
+        <property name="suffix" value=".jsp"/>    <!--配置前缀与后缀，将action中的返回值"main"
+         就能转为"pages/main.jsp"以精简代码-->
+    </bean>
+</beans>

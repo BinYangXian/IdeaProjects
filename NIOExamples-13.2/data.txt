@@ -1,0 +1,33 @@
+socket.read(byteBuffer, null, new CompletionHandler<Integer, Void>() {
+    @Override
+    public void completed(Integer result, Void attachment) {
+        if(result==-1){
+            close();
+            return;
+        }
+        byteBuffer.clear();
+        if (result > 0) {
+            byteBuffer.limit(result);
+            LOG.debug("server socket [{}] get " + result + " data from client:{}", clientIdentifier, getString(byteBuffer, result));
+            if (!connectted) {
+                handleConnect();
+            } else {
+                if (remainingData != null) {
+                    combineBuffer();
+                }
+                
+                while (byteBuffer.position() < result) {
+                    doProcess();
+                }
+            }
+        }
+        byteBuffer.clear();
+        socket.read(byteBuffer, null, this);
+    }
+
+    @Override
+    public void failed(Throwable exc, Void attachment) {
+        LOG.error("Server socket [{}] read failed,{}.", clientIdentifier, exc.toString());
+        close();
+    }
+});
