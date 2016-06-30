@@ -1,0 +1,11 @@
+package com.lixinghua.reflectDemo;
+
+import java.util.Date;//œ»”–¿‡
+
+public class Demo {
+
+	public static void main(String[] args) throws Exception{
+		Class<?> cls=Date.class;
+		System.out.println(cls);
+	}
+}

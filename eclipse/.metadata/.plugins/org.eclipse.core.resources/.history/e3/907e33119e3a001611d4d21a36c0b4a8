@@ -1,0 +1,10 @@
+package com.lixinghua.reflectDemo;
+
+public class Demo {
+
+	public static void main(String[] args) throws Exception{
+		Class<?> cls=Class.forName("com.lixinghua.reflectDemo.Book");
+		Object obj=cls.newInstance();  //相当于使用new调用无参构造实例化
+		System.out.println(obj);
+	}
+}

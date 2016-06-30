@@ -1,0 +1,18 @@
+package com.lixinghua.reflectDemo;
+class Book {
+	public Book() {
+		System.out.println("*********Book类的无参构造方法**********");
+	}
+	@Override
+	public String toString() {
+		return "这是一本书！";
+	}
+}
+public class Demo {
+
+	public static void main(String[] args) throws Exception{
+		Class<?> cls=Class.forName("com.lixinghua.reflectDemo.Book");
+		Object obj=cls.newInstance();  //相当于使用new调用无参构造实例化
+		System.out.println(obj);
+	}
+}

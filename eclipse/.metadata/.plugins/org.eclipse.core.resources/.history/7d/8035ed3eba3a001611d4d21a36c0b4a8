@@ -1,0 +1,18 @@
+package cn.mldn.demo;
+class Book {
+	public Book() {
+		System.out.println("*********Book类的无参构造方法**********");
+	}
+	@Override
+	public String toString() {
+		return "这是一本书！";
+	}
+}
+public class TestDemo {
+	public static void main(String[] args) throws Exception{
+		Class<?> cls=Class.forName("cn.mldn.demo.Book");
+		Object obj=cls.newInstance();  //相当于使用new调用无参构造实例化
+		Book book=(Book) obj;  //向下造型
+//		System.out.println(book);
+	}
+}

@@ -1,0 +1,12 @@
+package com.lixinghua.reflectDemo;
+
+import java.util.Date;//先有类
+
+public class Demo {
+
+	public static void main(String[] args) throws Exception{
+		Date date=new Date();//产生对象
+		System.out.println(date.getClass());
+	}
+
+}

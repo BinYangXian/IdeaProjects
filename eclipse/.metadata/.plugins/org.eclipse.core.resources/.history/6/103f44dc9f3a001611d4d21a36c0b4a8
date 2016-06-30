@@ -1,0 +1,9 @@
+package cn.mldn.demo;
+
+public class TestDemo {
+	public static void main(String[] args) throws Exception{
+		Class<?> cls=Class.forName("cn.mldn.poo.Book");
+		Object obj=cls.newInstance();  //相当于使用new调用无参构造实例化
+		System.out.println(obj);
+	}
+}

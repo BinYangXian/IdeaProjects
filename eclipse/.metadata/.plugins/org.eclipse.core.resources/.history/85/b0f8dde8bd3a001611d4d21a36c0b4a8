@@ -1,0 +1,19 @@
+package cn.mldn.demo;
+
+import java.lang.reflect.Method;
+
+public class TestDemo {
+	public static void main(String[] args) throws Exception {
+		String fieldName = "title";// 要操作的成员
+		Class<?> cls = Class.forName("cn.mldn.po.Book");
+		Object obj = cls.newInstance(); // 必须给出实例化对象
+		Method setMet = cls.getMethod("set" + initCap(fieldName), String.class);
+		Method getMet = cls.getMethod("get" + initCap(fieldName));
+		setMet.invoke(obj, "Java开发");//等价于：Book类对象.setTitle("Java开发")，但是却没有Book类出现。
+		System.out.println(getMet.invoke(obj));
+	}
+
+	public static String initCap(String str) {
+		return str.substring(0, 1).toUpperCase() + str.substring(1);
+	}
+}
