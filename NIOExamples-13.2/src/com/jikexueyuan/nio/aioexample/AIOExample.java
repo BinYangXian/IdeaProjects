@@ -35,7 +35,7 @@ public class AIOExample {
 //        Future<Integer> future = channel.write(ByteBuffer.wrap("hello java AIO".getBytes("utf-8")), 0);
         //方法2、当异步工作结束之后可以通知你。参数3.将当前contex等对象作为参数附着在异步工作里（因为当异步工作结束的时候，上下文
         // 对象很可能已经发生了改变），这里用不需要就用null。
-        channel.write(ByteBuffer.wrap("hello java AIO，where are you".getBytes("utf-8")), 0
+        channel.write(ByteBuffer.wrap("hello java AIO，where are you".getBytes("utf-8")), 0  //ByteBuffer.wrap("this is a AIO test.".getBytes("utf-8"))
                 , null, new CompletionHandler<Integer, Object>() {
                     @Override
                     public void completed(Integer result, Object attachment) {//参数1.写出数据的字节数，

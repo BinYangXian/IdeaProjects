@@ -1,33 +1,34 @@
-socket.read(byteBuffer, null, new CompletionHandler<Integer, Void>() {
-    @Override
-    public void completed(Integer result, Void attachment) {
-        if(result==-1){
-            close();
-            return;
-        }
-        byteBuffer.clear();
-        if (result > 0) {
-            byteBuffer.limit(result);
-            LOG.debug("server socket [{}] get " + result + " data from client:{}", clientIdentifier, getString(byteBuffer, result));
-            if (!connectted) {
-                handleConnect();
-            } else {
-                if (remainingData != null) {
-                    combineBuffer();
-                }
-                
-                while (byteBuffer.position() < result) {
-                    doProcess();
-                }
-            }
-        }
-        byteBuffer.clear();
-        socket.read(byteBuffer, null, this);
-    }
+package com.jikexueyuan.nio.ioexample;
 
-    @Override
-    public void failed(Throwable exc, Void attachment) {
-        LOG.error("Server socket [{}] read failed,{}.", clientIdentifier, exc.toString());
-        close();
+import java.io.*;
+
+/**
+ * Created by fangc on 2016/5/22.
+ */
+public class IOExample {
+
+    public static void main(String[] args) throws IOException {
+        //Write
+        File file = new File("data.txt");
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
+        fileOutputStream.write("love you".getBytes("utf-8"));
+        //Read 方法2
+        if (file.exists()) {
+            FileInputStream fileInputStream = new FileInputStream(file);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream, "utf-8"));
+            String line;
+            StringBuffer buffer = new StringBuffer();
+            while ((line = bufferedReader.readLine()) != null) {
+                buffer.append(line);
+            }
+            System.out.println(buffer);
+            bufferedReader.close();
+            fileInputStream.close();
+        }
+
+        fileOutputStream.close();
     }
-});
+}

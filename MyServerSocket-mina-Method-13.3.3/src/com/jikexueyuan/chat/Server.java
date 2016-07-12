@@ -21,7 +21,7 @@ public class Server {
         acceptor.setHandler(new ChatHandler());
         try {
             acceptor.bind(new InetSocketAddress(12345));
-            System.out.println("server started port 8000");
+            System.out.println("server started port 12345");
         } catch (IOException e) {
             e.printStackTrace();
         }

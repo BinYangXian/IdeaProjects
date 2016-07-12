@@ -8,7 +8,7 @@ import org.apache.mina.core.session.IoSession;
 /**
  * Created by fangc on 2016/5/24.
  */
-public class SockHandler extends IoHandlerAdapter {//参数需要时IoHandler类型，而实现IoHandler需要实现很多方法，
+public class SockHandler extends IoHandlerAdapter {//参数需要是IoHandler类型，而实现IoHandler需要实现很多方法，
     // 而IoHandlerAdapter恰好实现了该IoHandler，所以SockHandler类继承之更方便。   2、设置一个Handler
 
     @Override

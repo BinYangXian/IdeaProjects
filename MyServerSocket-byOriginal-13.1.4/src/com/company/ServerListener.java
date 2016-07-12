@@ -7,14 +7,15 @@ import java.net.Socket;
 
 /**
  * Created by fangc on 2016/5/21.
- */
+ 暂时不太实用，但是对于理解NIO很有用！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！！
+ 实用的是mina框架或者NIO（能力足够时候使用）*/
 public class ServerListener extends Thread {
     @Override
     public void run() {
         try {
             ServerSocket serverSocket = new ServerSocket(12345);
             while (true) { //循环侦听客户端的连接请求
-                //阻塞
+                //下句话会阻塞线程
                 Socket socket = serverSocket.accept();//Listens for a connection to be made to this socket and accepts
                // * it. The method blocks until a connection is made.之后，一旦客户端与服务端建立了链接，socket就会执行
                 // 完本次循环内的代码（既该客户端通过ChatSocket线程，实现与服务器相互传递信息的功能），此后本次循环结束，

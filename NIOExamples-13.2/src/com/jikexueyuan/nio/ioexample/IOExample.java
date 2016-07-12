@@ -12,23 +12,22 @@ public class IOExample {
         File file = new File("data.txt");
         if (!file.exists()) {
             file.createNewFile();
+            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            fileOutputStream.write("love you".getBytes("utf-8"));
+            fileOutputStream.close();
         }
-        FileOutputStream fileOutputStream = new FileOutputStream(file);
-        fileOutputStream.write("love you".getBytes("utf-8"));
         //Read 方法2
-        if (!file.exists()) {
+        if (file.exists()) {
             FileInputStream fileInputStream = new FileInputStream(file);
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream, "utf-8"));
             String line;
-            StringBuffer str = new StringBuffer();
+            StringBuffer buffer = new StringBuffer();
             while ((line = bufferedReader.readLine()) != null) {
-                str.append(line);
+                buffer.append(line).append("\n");
             }
-            System.out.println(str);
+            System.out.println(buffer);
             bufferedReader.close();
             fileInputStream.close();
         }
-
-        fileOutputStream.close();
     }
 }

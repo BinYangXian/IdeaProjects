@@ -13,7 +13,7 @@ public class ChatManager {//第四节、
 
     private static final ChatManager cm = new ChatManager();//2、static类型
 
-    public static ChatManager getChatManager() {
+    static ChatManager getChatManager() {
         return cm;                                            //3、static类型，就完成了类的单例化
     }
 
@@ -30,7 +30,6 @@ public class ChatManager {//第四节、
             ChatSocket csChatSocket = vector.get(i);
             if (!cs.equals(csChatSocket)) {//排除向自己发送消息的情况
                 csChatSocket.out(out);
-            System.out.println(out);
             }
         }
     }

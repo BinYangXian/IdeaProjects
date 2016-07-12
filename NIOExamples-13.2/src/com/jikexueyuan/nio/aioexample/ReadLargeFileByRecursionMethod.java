@@ -18,6 +18,7 @@ public class ReadLargeFileByRecursionMethod {
         AsynchronousFileChannel fileChannel = AsynchronousFileChannel.open(
                 new File("data.txt").toPath()
                 , StandardOpenOption.READ);
+        ByteBuffer buffer = ByteBuffer.allocate(10);//10是指buffer的分配空间10字节，与29行关联。
         CompletionHandler<Integer, ByteBuffer> handler = new CompletionHandler<Integer, ByteBuffer>() {
             @Override
             public synchronized void completed(Integer result, ByteBuffer attachment) {
@@ -25,7 +26,7 @@ public class ReadLargeFileByRecursionMethod {
                 dist.write(attachment.array(), 0, attachment.remaining());
 //                System.out.println(attachment.remaining());
                 if (attachment.remaining() == 10) {
-                    ByteBuffer buffer = ByteBuffer.allocate(10);
+                    buffer.clear();
                     fileChannel.read(buffer, 10 * i, buffer, this);//注意第二个参数的手动配置！！10是指buffer的分配空间10字节，
                     // 10*i表示第二次读取从fileChannel的第十个字节后开始读，依次类推。
                     i++;
@@ -40,7 +41,7 @@ public class ReadLargeFileByRecursionMethod {
         };
 
         dist = new ByteArrayOutputStream();
-        ByteBuffer buffer = ByteBuffer.allocate(10);
+
         fileChannel.read(buffer, 0, buffer, handler);
 
 //        pool.awaitTermination(1, TimeUnit.SECONDS);

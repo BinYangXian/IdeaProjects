@@ -22,7 +22,7 @@ public class Main {
         //二、添加一个自定义的滤镜（实现了与一、相同的功能）：
         acceptor.getFilterChain().addLast("StringFilterName",new StringFilter());
 
-        acceptor.setHandler(new SockHandler());//参数需要时IoHandler类型，而实现IoHandler需要实现很多方法，
+        acceptor.setHandler(new SockHandler());//参数需要是IoHandler类型，而实现IoHandler需要实现很多方法，
         // 而IoHandlerAdapter恰好实现了该IoHandler，所以SockHandler类继承之更方便。   2、设置一个Handler来处理acceptor。
         try {
             acceptor.bind(new InetSocketAddress(8000));                             //3、设置一个绑定的端口，

@@ -20,19 +20,20 @@ public class NIOExample {
         read();
     }
     void write() throws IOException {
-        File file=new File("data.txt");
+        File file=new File("dat.txt");
         if (!file.exists()){
             file.createNewFile();
+            FileOutputStream fileOutputStream=new FileOutputStream(file);//就算没有上一句话，依然可以顺利创建文件dat.txt，如果重复运行程序，会重新创建dat.txt。
+            //------------------------------------------------------以下便是NIO
+            FileChannel channel = fileOutputStream.getChannel();
+            channel.write(ByteBuffer.wrap("Hello Java NIO".getBytes("utf-8")));
+            channel.close();
+            fileOutputStream.close();
         }
-        FileOutputStream fileOutputStream=new FileOutputStream(file);
-        //------------------------------------------------------以下便是NIO
-        FileChannel channel = fileOutputStream.getChannel();
-        channel.write(ByteBuffer.wrap("Hello Java NIO".getBytes("utf-8")));
-        channel.close();
-        fileOutputStream.close();
+
     }
     void read() throws IOException {
-        File file=new File("data.txt");
+        File file=new File("dat.txt");
         if (file.exists()){
             FileInputStream fileInputStream=new FileInputStream(file);
 
